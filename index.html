@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amaury Tisseau · Engineer & Investor</title>
+<meta name="description" content="Amaury Tisseau, French engineer and investor. I build secure, scalable systems and allocate capital across private equity, venture, and real estate." />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#0b0c0e;
+  --ink-2:#101216;
+  --ink-3:#15181d;
+  --line:rgba(244,243,238,.09);
+  --line-2:rgba(244,243,238,.16);
+  --text:#f4f3ee;
+  --text-2:rgba(244,243,238,.60);
+  --text-3:rgba(244,243,238,.38);
+  --accent:#7ee0a6;
+  --accent-deep:#46c98a;
+  --accent-glow:rgba(126,224,166,.14);
+  --display:'Clash Display','Satoshi',system-ui,sans-serif;
+  --sans:'Satoshi',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --maxw:1180px;
+  --pad:40px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+::selection{background:var(--accent);color:#0b0c0e}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+
+/* ---------- background grain / ledger lines ---------- */
+.bg-field{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size:clamp(60px,8vw,120px) clamp(60px,8vw,120px);
+  -webkit-mask-image:radial-gradient(120% 90% at 70% 0%, #000 0%, transparent 72%);
+  mask-image:radial-gradient(120% 90% at 70% 0%, #000 0%, transparent 72%);
+  opacity:.5;
+}
+.bg-glow{
+  position:fixed;top:-30vh;right:-10vw;width:80vw;height:80vh;z-index:0;pointer-events:none;
+  background:radial-gradient(closest-side, var(--accent-glow), transparent 70%);
+  filter:blur(20px);
+}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);position:relative;z-index:2}
+section{position:relative;z-index:2}
+
+/* ---------- mono labels ---------- */
+.tag{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-3);font-weight:400;
+}
+.idx{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--accent);font-weight:500}
+.sec-head{display:flex;flex-direction:column;gap:18px;margin-bottom:46px}
+.sec-eyebrow{display:flex;align-items:center;gap:16px}
+.sec-eyebrow .line{flex:1;height:1px;background:var(--line)}
+.sec-title{font-family:var(--display);font-weight:500;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.02;max-width:20ch}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  transition:background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(11,12,14,.72);backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:-.01em}
+.brand .mono-mark{
+  width:30px;height:30px;border:1px solid var(--line-2);border-radius:8px;
+  display:grid;place-items:center;font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:500;
+}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-size:14px;color:var(--text-2);transition:color .2s;letter-spacing:.01em}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--accent);
+  padding:9px 16px;border-radius:8px;font-weight:500;transition:transform .15s, background .2s;
+  letter-spacing:.01em;white-space:nowrap;line-height:1;
+}
+.nav-cta:hover{background:#9aebbc}
+.menu-btn{display:none}
+@media(max-width:760px){
+  .nav-links{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{padding:148px 0 90px;min-height:100vh;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.45fr .9fr;gap:64px;align-items:center;width:100%}
+.status{
+  display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.06em;color:var(--text-2);border:1px solid var(--line);border-radius:999px;
+  padding:6px 14px 6px 12px;margin-bottom:30px;white-space:nowrap;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);position:relative}
+.dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:var(--accent);opacity:.45;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.45}70%{transform:scale(2.6);opacity:0}100%{opacity:0}}
+.hero h1{
+  font-family:var(--display);font-weight:500;letter-spacing:-.025em;line-height:.96;
+  font-size:clamp(46px,8.2vw,104px);margin-bottom:26px;
+}
+.hero h1 .amp{color:var(--accent);font-weight:400}
+.hero h1 .sub-role{display:block;font-size:clamp(18px,2.4vw,30px);font-weight:400;color:var(--text-2);letter-spacing:-.01em;margin-top:18px;line-height:1.2}
+.hero p.lede{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);max-width:42ch;margin-bottom:36px}
+.hero p.lede b{color:var(--text);font-weight:500}
+.hero-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;white-space:nowrap;
+  padding:13px 22px;border-radius:10px;transition:transform .15s ease, background .2s, border-color .2s, color .2s;
+}
+.btn-primary{background:var(--accent);color:var(--ink)}
+.btn-primary:hover{background:#9aebbc;transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn svg{width:16px;height:16px}
+
+/* spec card */
+.spec{
+  border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  padding:26px;position:relative;overflow:hidden;
+}
+.spec::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.5}
+.spec .spec-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.spec .spec-top .tag{color:var(--text-2)}
+.spec-row{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
+.spec-row:first-of-type{border-top:none}
+.spec-row .k{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--text-3);text-transform:uppercase;white-space:nowrap}
+.spec-row .v{font-size:13.5px;color:var(--text);text-align:right;font-weight:500;white-space:nowrap}
+.spec-row .v.accent{color:var(--accent)}
+.spark{margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+.spark-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--text-3);margin-bottom:10px;text-transform:uppercase}
+.spark svg{width:100%;height:54px}
+.spark path.line{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .spec{max-width:440px}
+}
+
+/* ---------- duality ---------- */
+.section{padding:96px 0}
+.duality{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--ink-2)}
+.dcol{padding:40px}
+.dcol:first-child{border-right:1px solid var(--line)}
+.dcol .dhead{display:flex;align-items:center;gap:13px;margin-bottom:8px}
+.dcol .dicon{width:38px;height:38px;border-radius:10px;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--accent)}
+.dcol .dicon svg{width:19px;height:19px}
+.dcol h3{font-family:var(--display);font-weight:500;font-size:24px;letter-spacing:-.01em}
+.dcol .dsub{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:22px}
+.dcol p{color:var(--text-2);font-size:15.5px;margin-bottom:24px}
+.dcol p b{color:var(--text);font-weight:500}
+.dstats{display:flex;gap:28px;flex-wrap:wrap}
+.dstat .num{font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1}
+.dstat .num .u{color:var(--accent);font-size:20px}
+.dstat .lab{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-top:7px}
+@media(max-width:760px){
+  .duality{grid-template-columns:1fr}
+  .dcol:first-child{border-right:none;border-bottom:1px solid var(--line)}
+}
+
+/* ---------- principles ---------- */
+.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.principle{background:var(--ink);padding:32px 26px;transition:background .25s}
+.principle:hover{background:var(--ink-3)}
+.principle .pn{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em}
+.principle h4{font-family:var(--display);font-weight:500;font-size:19px;margin:18px 0 10px;letter-spacing:-.01em}
+.principle p{color:var(--text-2);font-size:14.5px;line-height:1.55}
+@media(max-width:880px){.principles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.principles{grid-template-columns:1fr}}
+
+/* ---------- timeline ---------- */
+.timeline{position:relative}
+.tl-item{display:grid;grid-template-columns:130px 1fr;gap:36px;padding:30px 0;border-top:1px solid var(--line);position:relative}
+.tl-item:first-child{border-top:none}
+.tl-when{font-family:var(--mono);font-size:13px;color:var(--text-3);letter-spacing:.02em;padding-top:4px}
+.tl-when .now{color:var(--accent)}
+.tl-body{position:relative}
+.tl-body .tl-role{font-family:var(--display);font-weight:500;font-size:21px;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tl-co{color:var(--accent);font-weight:500}
+.tl-meta{font-family:var(--mono);font-size:12px;color:var(--text-3);letter-spacing:.04em;margin:7px 0 14px;text-transform:uppercase}
+.tl-body p{color:var(--text-2);font-size:15px;max-width:64ch}
+.tl-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--text-2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;white-space:nowrap}
+@media(max-width:680px){.tl-item{grid-template-columns:1fr;gap:10px}}
+
+/* ---------- capabilities ledger ---------- */
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.led-col h3{font-family:var(--display);font-weight:500;font-size:22px;margin-bottom:6px;display:flex;align-items:center;gap:11px}
+.led-col h3 .d{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.led-col .cap{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:24px}
+.led-row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:14px 0;border-top:1px solid var(--line)}
+.led-row .lk{font-size:15px;color:var(--text);font-weight:500}
+.led-row .lv{font-family:var(--mono);font-size:12px;color:var(--text-3);text-align:right;letter-spacing:.02em;white-space:nowrap}
+@media(max-width:760px){.ledger{grid-template-columns:1fr;gap:48px}}
+
+/* ---------- beyond ---------- */
+.beyond{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.bcard{border:1px solid var(--line);border-radius:16px;padding:26px 22px;background:var(--ink-2);transition:transform .25s ease,border-color .25s}
+.bcard:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.bcard .bicon{width:34px;height:34px;color:var(--accent);margin-bottom:18px}
+.bcard .bicon svg{width:34px;height:34px}
+.bcard h4{font-family:var(--display);font-weight:500;font-size:18px;margin-bottom:7px;letter-spacing:-.01em}
+.bcard p{color:var(--text-2);font-size:14px;line-height:1.5}
+@media(max-width:880px){.beyond{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:440px){.beyond{grid-template-columns:1fr}}
+
+/* ---------- contact ---------- */
+.contact{padding:120px 0}
+.contact-inner{border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,var(--ink-2),var(--ink));padding:clamp(40px,6vw,76px);text-align:center;position:relative;overflow:hidden}
+.contact-inner::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% -10%,var(--accent-glow),transparent 70%);pointer-events:none}
+.contact h2{font-family:var(--display);font-weight:500;font-size:clamp(32px,5.4vw,60px);letter-spacing:-.025em;line-height:1.02;margin-bottom:22px;position:relative}
+.contact h2 .accent{color:var(--accent)}
+.contact p{color:var(--text-2);font-size:18px;max-width:48ch;margin:0 auto 38px;position:relative}
+.contact-cta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;position:relative}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:40px 0;position:relative;z-index:2}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot .fbrand{font-family:var(--display);font-weight:600;font-size:16px}
+.foot .fmeta{font-family:var(--mono);font-size:12px;color:var(--text-3);letter-spacing:.04em}
+.foot .flinks{display:flex;gap:24px}
+.foot .flinks a{font-family:var(--mono);font-size:12px;color:var(--text-2);letter-spacing:.04em;transition:color .2s}
+.foot .flinks a:hover{color:var(--accent)}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .dot::after{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="bg-field"></div>
+<div class="bg-glow"></div>
+
+<header id="hdr">
+  <div class="wrap">
+    <nav class="nav">
+      <a class="brand" href="#top">
+        <span class="mono-mark">AT</span>
+        <span>Amaury Tisseau</span>
+      </a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#approach">Approach</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="mailto:amaury.tisseau@gmail.com">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="status reveal"><span class="dot"></span>Engineer & Investor · Based in London</div>
+        <h1 class="reveal">Systems <span class="amp">&amp;</span> Capital.
+          <span class="sub-role">Engineer who builds. Investor who allocates.</span>
+        </h1>
+        <p class="lede reveal">French engineer with a background in data, AI and finance. I build <b>secure, scalable infrastructure</b> for one of Europe's most promising impact fintechs, and run a <b>multi-asset investment strategy</b> across private equity, venture, and real estate.</p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-primary" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+            Get in touch
+          </a>
+          <a class="btn btn-ghost" href="#work">View the work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <aside class="spec reveal" aria-label="At a glance">
+        <div class="spec-top">
+          <span class="tag">// at a glance</span>
+          <span class="tag">51.5°N · 0.1°W</span>
+        </div>
+        <div class="spec-row"><span class="k">Role</span><span class="v">DevOps · Investor</span></div>
+        <div class="spec-row"><span class="k">Based</span><span class="v">London, UK</span></div>
+        <div class="spec-row"><span class="k">Building</span><span class="v">Infra @ Weefin</span></div>
+        <div class="spec-row"><span class="k">Allocating</span><span class="v">PE · VC · Real estate</span></div>
+        <div class="spec-row"><span class="k">Education</span><span class="v">IMT Atlantique</span></div>
+        <div class="spec-row"><span class="k">Focus</span><span class="v accent">Systems & Capital</span></div>
+        <div class="spark">
+          <div class="spark-label"><span>Compounding</span><span>2021 → now</span></div>
+          <svg viewBox="0 0 300 54" preserveAspectRatio="none" aria-hidden="true">
+            <path class="line" id="sparkline" d="M0,46 L40,42 L80,44 L120,33 L160,30 L200,18 L240,16 L300,4" />
+          </svg>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ DUALITY ============ -->
+  <section class="section wrap" id="about">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span class="idx">01</span><span class="tag">The pairing</span><span class="line"></span></div>
+    </div>
+    <div class="duality reveal">
+      <div class="dcol">
+        <div class="dhead">
+          <span class="dicon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 9l-4 3 4 3"/><path d="M16 9l4 3-4 3"/><path d="M14 5l-4 14"/></svg>
+          </span>
+          <h3>Systems</h3>
+        </div>
+        <div class="dsub">Engineering · Infrastructure · Data</div>
+        <p>I design and run <b>secure, highly-available platforms</b>. At Weefin I build the cloud infrastructure behind a B2B SaaS serving 50+ clients: SOC 2-compliant, fully infrastructure-as-code, with monitoring, on-call, and CI/CD that lets 40+ engineers ship together.</p>
+        <div class="dstats">
+          <div class="dstat"><div class="num">50<span class="u">+</span></div><div class="lab">Clients served</div></div>
+          <div class="dstat"><div class="num">40<span class="u">+</span></div><div class="lab">Engineers enabled</div></div>
+          <div class="dstat"><div class="num">SOC<span class="u">2</span></div><div class="lab">Compliant</div></div>
+        </div>
+      </div>
+      <div class="dcol">
+        <div class="dhead">
+          <span class="dicon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19h16"/><path d="M6 16l4-5 3 3 5-7"/><path d="M18 7h2v2"/></svg>
+          </span>
+          <h3>Capital</h3>
+        </div>
+        <div class="dsub">Investing · Portfolio · Strategy</div>
+        <p>As Executive Director of a family holding, I lead the full <b>investment and reinvestment strategy</b> under the 150-0 B ter regime: a diversified, multi-asset portfolio spanning private equity funds, direct startup investments, real estate, and secured placements. Sourcing, diligence, structuring, allocation.</p>
+        <div class="dstats">
+          <div class="dstat"><div class="num">4<span class="u">+</span></div><div class="lab">Asset classes</div></div>
+          <div class="dstat"><div class="num">2</div><div class="lab">Fundraises observed</div></div>
+          <div class="dstat"><div class="num">PE<span class="u">/VC</span></div><div class="lab">Focus</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRINCIPLES ============ -->
+  <section class="section wrap" id="approach">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span class="idx">02</span><span class="tag">How I think</span><span class="line"></span></div>
+      <h2 class="sec-title">A single operating philosophy, two domains.</h2>
+    </div>
+    <div class="principles reveal">
+      <div class="principle">
+        <span class="pn">P/01</span>
+        <h4>Compounding wins</h4>
+        <p>Whether it's capital or infrastructure, value comes from disciplined, repeatable decisions held over time, not one-off bets.</p>
+      </div>
+      <div class="principle">
+        <span class="pn">P/02</span>
+        <h4>Resilience by design</h4>
+        <p>Systems and portfolios should both survive their worst day. I build for failure modes before I build for upside.</p>
+      </div>
+      <div class="principle">
+        <span class="pn">P/03</span>
+        <h4>Diligence before conviction</h4>
+        <p>Deep due diligence on a fund, a startup, or an architecture earns the right to a strong, well-sized position.</p>
+      </div>
+      <div class="principle">
+        <span class="pn">P/04</span>
+        <h4>Build for scale</h4>
+        <p>Everything is designed to grow: automated where it should be, documented, and structured to outlast me.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section class="section wrap" id="work">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span class="idx">03</span><span class="tag">Trajectory</span><span class="line"></span></div>
+      <h2 class="sec-title">Where I've built &amp; allocated.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-when"><span class="now">2023 – now</span></div>
+        <div class="tl-body">
+          <div class="tl-role">DevOps Engineer<span class="tl-co">· Weefin</span></div>
+          <div class="tl-meta">London, UK · Sustainable finance fintech</div>
+          <p>Create and maintain the cloud infrastructure for a B2B SaaS platform serving 50+ clients. Design a strongly secured, SOC 2-compliant product, hold high availability with advanced monitoring and on-call, and run the CI/CD pipelines that keep 40+ developers shipping seamlessly.</p>
+          <div class="tl-chips"><span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">CI/CD</span><span class="chip">SOC 2</span><span class="chip">Monitoring</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when"><span class="now">2023 – now</span></div>
+        <div class="tl-body">
+          <div class="tl-role">Executive Director, Investment Strategy<span class="tl-co">· Family Holding</span></div>
+          <div class="tl-meta">Independent · Multi-asset portfolio</div>
+          <p>Lead the full investment and reinvestment process under the 150-0 B ter regime. Built a diversified portfolio across real estate, private equity funds, direct startup investments, and secured placements, defining allocation frameworks, sourcing and structuring deals, and running the holding's legal, tax, and accounting in-house.</p>
+          <div class="tl-chips"><span class="chip">Private equity</span><span class="chip">Venture</span><span class="chip">Real estate</span><span class="chip">Due diligence</span><span class="chip">Allocation</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">2022 – 2023</div>
+        <div class="tl-body">
+          <div class="tl-role">Cloud Data Engineer<span class="tl-co">· Safran Cabin</span></div>
+          <div class="tl-meta">Huntington Beach, California · VIE</div>
+          <p>On the AWS Cloud team, built a fully serverless AI workflow to automatically extract data from customer purchase orders (Lambda, Textract, SNS/SQS, S3, DynamoDB), shipped infrastructure-as-code with Terraform, and automated cloud instance management.</p>
+          <div class="tl-chips"><span class="chip">AWS Lambda</span><span class="chip">Textract</span><span class="chip">Terraform</span><span class="chip">Serverless</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">2021</div>
+        <div class="tl-body">
+          <div class="tl-role">AI Data Scientist<span class="tl-co">· Ifremer</span></div>
+          <div class="tl-meta">Brest, France · Research internship</div>
+          <p>Built deep-learning models for the detection of invasive marine species (embedded on a Raspberry Pi) and a complete processing chain for submarine data: cleaning, physical computation, and live dataviz with the Elasticsearch / Kibana stack.</p>
+          <div class="tl-chips"><span class="chip">PyTorch</span><span class="chip">Deep learning</span><span class="chip">Elasticsearch</span></div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">2019 – 2022</div>
+        <div class="tl-body">
+          <div class="tl-role">Engineering Degree, Data Science<span class="tl-co">· IMT Atlantique</span></div>
+          <div class="tl-meta">Brest · Master 2 · after CPGE MPSI/MP</div>
+          <p>Master's in Data Science from one of France's top engineering grandes écoles, following two years of classes préparatoires in mathematics and physics.</p>
+          <div class="tl-chips"><span class="chip">Data science</span><span class="chip">Machine learning</span><span class="chip">Mathematics</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAPABILITIES ============ -->
+  <section class="section wrap" id="capabilities">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span class="idx">04</span><span class="tag">Capabilities</span><span class="line"></span></div>
+      <h2 class="sec-title">What I bring to the table.</h2>
+    </div>
+    <div class="ledger reveal">
+      <div class="led-col">
+        <h3><span class="d"></span>Engineering</h3>
+        <div class="cap">Build · Secure · Scale</div>
+        <div class="led-row"><span class="lk">Infrastructure as Code</span><span class="lv">Terraform</span></div>
+        <div class="led-row"><span class="lk">Cloud platforms</span><span class="lv">AWS · GCP</span></div>
+        <div class="led-row"><span class="lk">CI/CD &amp; automation</span><span class="lv">GitOps</span></div>
+        <div class="led-row"><span class="lk">Reliability</span><span class="lv">Observability</span></div>
+        <div class="led-row"><span class="lk">Security &amp; compliance</span><span class="lv">SOC 2</span></div>
+        <div class="led-row"><span class="lk">Data &amp; ML</span><span class="lv">PyTorch · Spark</span></div>
+        <div class="led-row"><span class="lk">Languages</span><span class="lv" style="white-space:normal">Python · C++ · Java · OCaml · SQL · Solidity</span></div>
+      </div>
+      <div class="led-col">
+        <h3><span class="d"></span>Investing</h3>
+        <div class="cap">Source · Assess · Allocate</div>
+        <div class="led-row"><span class="lk">Private equity funds</span><span class="lv">Selection</span></div>
+        <div class="led-row"><span class="lk">Venture &amp; direct startups</span><span class="lv">Sourcing</span></div>
+        <div class="led-row"><span class="lk">Real estate vehicles</span><span class="lv">Diversification</span></div>
+        <div class="led-row"><span class="lk">Portfolio construction</span><span class="lv">Multi-asset</span></div>
+        <div class="led-row"><span class="lk">Due diligence</span><span class="lv">Assessment</span></div>
+        <div class="led-row"><span class="lk">Tax &amp; structuring</span><span class="lv">150-0 B ter</span></div>
+        <div class="led-row"><span class="lk">Legal &amp; accounting</span><span class="lv">In-house</span></div>
+        <div class="led-row"><span class="lk">Risk &amp; allocation</span><span class="lv">Frameworks</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BEYOND ============ -->
+  <section class="section wrap" id="beyond">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span class="idx">05</span><span class="tag">Off the clock</span><span class="line"></span></div>
+      <h2 class="sec-title">Endurance, balance, taste.</h2>
+    </div>
+    <div class="beyond">
+      <div class="bcard reveal">
+        <div class="bicon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 28l3-9 4 3 1 6"/><path d="M14 19l-2-5 6-3 4 4 4-1"/><circle cx="20" cy="7" r="2.4"/></svg></div>
+        <h4>Trail &amp; road running</h4>
+        <p>Long distances over mountains and pavement. The discipline that compounds.</p>
+      </div>
+      <div class="bcard reveal">
+        <div class="bicon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 23c3 2 5 2 8 0s5-2 8 0 5 2 8 0"/><path d="M3 28c3 2 5 2 8 0s5-2 8 0 5 2 8 0"/><path d="M18 5c-6 3-9 9-9 14"/><circle cx="20" cy="6" r="2.2"/></svg></div>
+        <h4>Surf &amp; kitesurf</h4>
+        <p>Reading the ocean and the wind. Patience, timing, and committing to the wave.</p>
+      </div>
+      <div class="bcard reveal">
+        <div class="bicon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 5h10l-1 8a4 4 0 01-8 0z"/><path d="M16 21v5"/><path d="M11 27h10"/></svg></div>
+        <h4>Wine</h4>
+        <p>A genuine nerd for terroir and vintage. The long game of patience, in a glass.</p>
+      </div>
+      <div class="bcard reveal">
+        <div class="bicon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 27l7-7"/><path d="M12 20a6 6 0 108-8 6 6 0 00-8 8z"/><path d="M19 9l3-3 4 4-3 3"/></svg></div>
+        <h4>Always investing</h4>
+        <p>Markets, theses, and the next promising team. Curiosity that never logs off.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact wrap" id="contact">
+    <div class="contact-inner reveal">
+      <h2>Let's build something<br />that <span class="accent">compounds.</span></h2>
+      <p>Whether it's infrastructure, an investment thesis, or a future company. I'm always open to a good conversation.</p>
+      <div class="contact-cta">
+        <a class="btn btn-primary" href="mailto:amaury.tisseau@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+          amaury.tisseau@gmail.com
+        </a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/amaurytisseau" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/Amaurytiss" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="fbrand">Amaury Tisseau</div>
+    <div class="fmeta">London, UK · Engineer &amp; Investor · © 2026</div>
+    <div class="flinks">
+      <a href="mailto:amaury.tisseau@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/amaurytisseau" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Amaurytiss" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // header scroll state
+  var hdr=document.getElementById('hdr');
+  function onScroll(){ hdr.classList.toggle('scrolled', window.scrollY>20); }
+  onScroll();
+  window.addEventListener('scroll',onScroll,{passive:true});
+
+  // scroll reveal
+  var els=document.querySelectorAll('.reveal');
+  function show(el){ el.classList.add('in'); }
+  function inView(el){ var r=el.getBoundingClientRect(); return r.top < (window.innerHeight||document.documentElement.clientHeight)*0.92 && r.bottom>0; }
+  // immediate pass: anything already on screen reveals now (covers capture/no-IO cases)
+  els.forEach(function(el,i){ el.style.transitionDelay=(Math.min(i,6)*55)+'ms'; if(inView(el)) show(el); });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ show(e.target); io.unobserve(e.target); } });
+    },{threshold:0, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ if(!el.classList.contains('in')) io.observe(el); });
+  }
+  // safety fallback: never leave content hidden
+  setTimeout(function(){ els.forEach(show); }, 2200);
+  window.addEventListener('load', function(){ els.forEach(function(el){ if(inView(el)) show(el); }); });
+
+  // animate sparkline draw
+  var sp=document.getElementById('sparkline');
+  if(sp && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var len=sp.getTotalLength();
+    sp.style.strokeDasharray=len;
+    sp.style.strokeDashoffset=len;
+    sp.style.transition='stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1) .5s';
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ sp.style.strokeDashoffset=0; }); });
+  }
+})();
+</script>
+</body>
+</html>
